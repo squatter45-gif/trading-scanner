@@ -23,10 +23,12 @@ OUTPUT_DIR = "C:/Users/squat/OneDrive/Desktop/CLAUDE TRAINING/trading_scanner/sc
 LOG_FILE = "C:/Users/squat/OneDrive/Desktop/CLAUDE TRAINING/trading_scanner/warren_log.txt"
 
 # Email config (optional)
-SEND_EMAIL = False  # Set to True if you want email alerts
-EMAIL_FROM = "your_email@gmail.com"
-EMAIL_TO = "squatter_@hotmail.com"
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD", "")  # Use env var for security
+SEND_EMAIL = True  # Send email alerts with scorecard summaries
+EMAIL_FROM = "squatter45@gmail.com"
+EMAIL_TO = "squatter45@gmail.com"
+EMAIL_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")  # Set via environment variable
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
 
 # ============================================================================
 # LOGGING
@@ -105,37 +107,47 @@ def get_latest_reports():
 def send_email_alert(reports: dict):
     """Send email with top picks from each market"""
     if not SEND_EMAIL or not EMAIL_PASSWORD:
+        if SEND_EMAIL and not EMAIL_PASSWORD:
+            log(f"⚠️ Email enabled but GMAIL_APP_PASSWORD not set. Set via: $env:GMAIL_APP_PASSWORD='your_app_password'")
         return
 
     try:
-        # Read reports and extract top scorecards
         msg = MIMEMultipart("alternative")
         msg["Subject"] = f"📊 Trading Scanner Alert - {datetime.now().strftime('%Y-%m-%d %H:%M')}"
         msg["From"] = EMAIL_FROM
         msg["To"] = EMAIL_TO
 
-        html_body = """<html><body>
+        html_body = """<html><body style="font-family: Arial, sans-serif;">
 <h2>📊 Daily Trading Scanner Results</h2>
-<p>Click links below to review in BoxRunner Dashboard</p>
+<p>Scorecard reports for BoxRunner setup evaluation</p>
 """
 
         for key, filepath in reports.items():
             market, category = key.split('_')
+            # Convert file path to GitHub link
+            github_link = filepath.replace('C:\\Users\\squat\\OneDrive\\Desktop\\CLAUDE TRAINING\\trading_scanner\\',
+                                          'https://github.com/squatter45-gif/trading-scanner/blob/main/')
             html_body += f"""
-<h3>{market} {category.upper()}</h3>
-<p><a href="file:///{filepath}">Open Report</a></p>
+<h3>{market.upper()} {category.upper()}</h3>
+<p><strong>Local:</strong> {filepath}</p>
+<p><strong>GitHub:</strong> <a href="{github_link}">{key}</a></p>
+<hr>
 """
 
-        html_body += """</body></html>"""
+        html_body += """
+<p><em>Scorecard range: 0-50 points (higher = stronger setup)</em></p>
+<p>Review reports and feed confirmed setups into BoxRunner 🚀</p>
+</body></html>"""
 
         msg.attach(MIMEText(html_body, "html"))
 
-        # Send via Gmail (requires app password)
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        # Send via Gmail SMTP (TLS on port 587)
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
             server.login(EMAIL_FROM, EMAIL_PASSWORD)
             server.sendmail(EMAIL_FROM, EMAIL_TO, msg.as_string())
 
-        log(f"✅ Email alert sent to {EMAIL_TO}")
+        log(f"✅ Email sent to {EMAIL_TO}")
 
     except Exception as e:
         log(f"⚠️ Email failed: {e}")
