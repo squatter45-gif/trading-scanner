@@ -85,10 +85,16 @@ class MarketScanner:
         self.scorecards = []
         self.scan_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
+    def yf_symbol(self, ticker: str) -> str:
+        """Map a bare ticker to the symbol yfinance/Yahoo Finance expects"""
+        if self.market == 'ASX':
+            return f"{ticker}.AX"
+        return ticker
+
     def fetch_data(self, ticker: str, period: str = '60d') -> pd.DataFrame:
         """Fetch OHLCV data for ticker"""
         try:
-            data = yf.download(ticker, period=period, progress=False)
+            data = yf.download(self.yf_symbol(ticker), period=period, progress=False)
             if isinstance(data.columns, pd.MultiIndex):
                 data.columns = data.columns.droplevel(1)
             data = data.dropna(subset=['Close'])
