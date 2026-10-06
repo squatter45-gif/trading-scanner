@@ -89,6 +89,9 @@ class MarketScanner:
         """Fetch OHLCV data for ticker"""
         try:
             data = yf.download(ticker, period=period, progress=False)
+            if isinstance(data.columns, pd.MultiIndex):
+                data.columns = data.columns.droplevel(1)
+            data = data.dropna(subset=['Close'])
             return data
         except Exception as e:
             print(f"  ❌ Error fetching {ticker}: {e}")
