@@ -1,0 +1,36 @@
+[
+  {
+    "ticker": "TLS",
+    "price": 4.8,
+    "price_change_pct": -0.21,
+    "trend": "Up",
+    "status": "Building support",
+    "support": 4.74,
+    "resistance": 4.93,
+    "buy_above": 4.98,
+    "stop": 4.65,
+    "score": 15,
+    "volume_pct": 92.1,
+    "setup_note": "Uptrend forming, watch volume",
+    "scan_time": "2026-10-07 21:04:33",
+    "market": "ASX",
+    "category": "megacap"
+  },
+  {
+    "ticker": "AMP",
+    "price": 2.54,
+    "price_change_pct": -0.78,
+    "trend": "Up",
+    "status": "Building support",
+    "support": 2.43,
+    "resistance": 2.66,
+    "buy_above": 2.69,
+    "stop": 2.38,
+    "score": 15,
+    "volume_pct": 80.1,
+    "setup_note": "Uptrend forming, watch volume",
+    "scan_time": "2026-10-07 21:04:33",
+    "market": "ASX",
+    "category": "megacap"
+  }
+]
