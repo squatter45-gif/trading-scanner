@@ -1,0 +1,36 @@
+[
+  {
+    "ticker": "TLS",
+    "price": 4.79,
+    "price_change_pct": 1.91,
+    "trend": "Neutral",
+    "status": "Inside box",
+    "support": 4.59,
+    "resistance": 4.88,
+    "buy_above": 4.93,
+    "stop": 4.5,
+    "score": 20,
+    "volume_pct": 163.8,
+    "setup_note": "Consolidating, neutral setup",
+    "scan_time": "2026-10-15 21:05:37",
+    "market": "ASX",
+    "category": "megacap"
+  },
+  {
+    "ticker": "AMP",
+    "price": 2.4,
+    "price_change_pct": 0.0,
+    "trend": "Down",
+    "status": "Inside box",
+    "support": 2.23,
+    "resistance": 2.66,
+    "buy_above": 2.69,
+    "stop": 2.19,
+    "score": 10,
+    "volume_pct": 140.5,
+    "setup_note": "Downtrend in place, avoid",
+    "scan_time": "2026-10-15 21:05:37",
+    "market": "ASX",
+    "category": "megacap"
+  }
+]
