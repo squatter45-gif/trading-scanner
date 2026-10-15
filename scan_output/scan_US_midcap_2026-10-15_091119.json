@@ -1,0 +1,53 @@
+[
+  {
+    "ticker": "PYPL",
+    "price": 56.1,
+    "price_change_pct": -0.12,
+    "trend": "Neutral",
+    "status": "Inside box",
+    "support": 51.81,
+    "resistance": 56.4,
+    "buy_above": 56.96,
+    "stop": 50.77,
+    "score": 5,
+    "volume_pct": 81.4,
+    "setup_note": "Consolidating, neutral setup",
+    "scan_time": "2026-10-15 09:11:14",
+    "market": "US",
+    "category": "midcap"
+  },
+  {
+    "ticker": "MARA",
+    "price": 8.23,
+    "price_change_pct": -9.66,
+    "trend": "Down",
+    "status": "Inside box",
+    "support": 8.17,
+    "resistance": 13.98,
+    "buy_above": 14.12,
+    "stop": 8.01,
+    "score": 0,
+    "volume_pct": 95.0,
+    "setup_note": "Downtrend in place, avoid",
+    "scan_time": "2026-10-15 09:11:14",
+    "market": "US",
+    "category": "midcap"
+  },
+  {
+    "ticker": "DKNG",
+    "price": 18.9,
+    "price_change_pct": -4.16,
+    "trend": "Down",
+    "status": "Inside box",
+    "support": 18.5,
+    "resistance": 24.35,
+    "buy_above": 24.59,
+    "stop": 18.13,
+    "score": 0,
+    "volume_pct": 79.0,
+    "setup_note": "Downtrend in place, avoid",
+    "scan_time": "2026-10-15 09:11:14",
+    "market": "US",
+    "category": "midcap"
+  }
+]
